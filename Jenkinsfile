@@ -21,11 +21,22 @@ pipeline {
             agent any
             steps {
                 
-                sh '''#!/bin/bash
-                
-                    echo " Hi, I am fine."
-                    
-                   '''
+                stages {
+        stage('build and push') {
+            when {
+                branch 'master'
+            }
+            sh "docker build -t docker/getting-started ."
+
+            steps {
+                withDockerRegistry([url: "", credentialsId: "dockerbuildbot-index.docker.io"]) {
+                    sh("docker push docker/getting-started")
+                }
+            }
+        }
+    }
+}
+
             }
         }
                  
