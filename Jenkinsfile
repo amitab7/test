@@ -3,14 +3,12 @@ pipeline {
 
     stages {
 
-        stage ('Hello') {
+        stage ('Git') {
             agent any
 
             steps {
-                echo 'Hello, '
                 
-
-                sh '''#!/bin/bash
+             sh '''#!/bin/bash
 
                     echo "Hello from bash"
                     echo "Who I'm $SHELL"
@@ -19,5 +17,18 @@ pipeline {
                 '''
             }
         }
+        stage ('Docker'){
+            agent any
+            steps {
+                
+                sh '''#!/bin/bash
+                
+                    echo " Hi, I am fine."
+                    
+                   '''
+            }
+        }
+                 
+           
     }
 }
