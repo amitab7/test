@@ -15,6 +15,7 @@ pipeline {
                     echo "Hello from bash"
                     echo "Who I'm $SHELL"
                     echo " Hello World!"
+                    echo " How are you ?"
                 '''
             }
         }
