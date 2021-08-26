@@ -13,24 +13,11 @@ pipeline {
                     echo "Who I'm $SHELL"
                     echo " Hello World!"
                     echo " How are you ?"
+                    docker build -t docker/getting-started
                 '''
             }
         }
-        stage ('Docker'){
-            agent any
-            steps {
-                
-                stages {
-        stage('build and push') {
-            
-            sh "docker build -t docker/getting-started ."
-
-            
-            }
-        }
-    }
-}
-
+        
 }
         
 }
