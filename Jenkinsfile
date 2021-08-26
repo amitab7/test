@@ -13,7 +13,7 @@ pipeline {
                     echo "Who I'm $SHELL"
                     echo " Hello World!"
                     echo " How are you ?"
-                    docker build -t .
+                    docker build .
                 '''
             }
         }
