@@ -1,22 +1,37 @@
 pipeline {
-    options {
-        timeout(time: 1, unit: 'HOURS')
-    }
-    agent {
-        label 'ubuntu-1804 && amd64 && docker'
-    }
+    agent none
+
     stages {
-        stage('build and push') {
-            when {
-                branch 'master'
-            }
-            sh "docker build -t docker/getting-started ."
+
+        stage ('Git') {
+            agent any
 
             steps {
-                withDockerRegistry([url: "", credentialsId: "dockerbuildbot-index.docker.io"]) {
-                    sh("docker push docker/getting-started")
-                }
+                
+             sh '''#!/bin/bash
+                    echo "Hello from bash"
+                    echo "Who I'm $SHELL"
+                    echo " Hello World!"
+                    echo " How are you ?"
+                '''
+            }
+        }
+        stage ('Docker'){
+            agent any
+            steps {
+                
+                stages {
+        stage('build and push') {
+            
+            sh "docker build -t docker/getting-started ."
+
+            
             }
         }
     }
 }
+
+}
+        
+}
+             
